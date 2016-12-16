@@ -57,7 +57,9 @@ function make_helix($input) {
         if (in_array($letter, $valid_helix)) {
             if ($letter == 'A') {
                 array_push($output_helix_array, 'T');
-            } 
+            } elseif ($letter == 'T') {
+                array_push($output_helix_array, 'A');
+            }
         }
         return implode(' ', $output_helix_array);
     }
