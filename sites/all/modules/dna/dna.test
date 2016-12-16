@@ -88,6 +88,16 @@ class DNATestCase extends DrupalUnitTestCase {
         $expected_output = 'TAGC';
         $this->assertEqual($result, $expected_output, $description);
 
+        //Describe
+        $description = 'Test TAGC Returns ATCG in Helix';
+        //Arrange
+        $input = 'ATCG';
+        //Act
+        $result = make_helix($input);
+        //Assert
+        $expected_output = 'TAGC';
+        $this->assertEqual($result, $expected_output, $description);
+
 
     }
 
