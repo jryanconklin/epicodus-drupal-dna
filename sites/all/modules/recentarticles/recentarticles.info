@@ -1,0 +1,5 @@
+name = Recent Articles
+description = Display Recent Articles with AJAX
+package = AJAX Views
+core = 7.x
+files[] = recentarticles.module
