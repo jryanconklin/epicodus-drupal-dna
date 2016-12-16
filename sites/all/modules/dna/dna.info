@@ -1,0 +1,7 @@
+name = DNA
+description = DNA Checker - Reveals the Other Half of Your Helix
+package = DNA
+core = 7.x
+files[] = dna.module
+files[] = dna.test
+dependencies[] = simpletest

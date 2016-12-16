@@ -1,0 +1,52 @@
+<?php
+
+function dna_menu() {
+    $items['dna'] = array(
+        'title' => 'DNA',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('dna_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['dna_success_page'] = array(
+        'title' => 'Your DNA!',
+        'page callback' => 'dna_success',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function dna_form() {
+    $form['half_helix'] = array(
+        '#title' => 'Half Helix',
+        '#type' => 'textfield',
+        '#attributes' => array('placeholder' => t('Enter Your Half of the Helix to Get Another!')),
+        '#required' => TRUE,
+        '#element_validate' => array('element_validate_helix'),
+    );
+
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Submit',
+    );
+    return $form;
+}
+
+function element_validate_helix($element) {
+    $valid_helix = array('A', 'T', 'C', 'G');
+
+    $helix = strtoupper($element['#value']);
+    $helix = trim($helix);
+    $helix = explode(' ', $helix);
+
+    foreach($helix as $letter) {
+        if (!in_array($letter, $valid_helix)) {
+            form_error($element, t('Valid Helix Value Only: A T C or G'));
+        }
+    }
+}
+
+function dna_form_submit(&$form, &$form_state) {
+
+}
