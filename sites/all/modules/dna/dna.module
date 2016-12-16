@@ -61,6 +61,8 @@ function make_helix($input) {
                 array_push($output_helix_array, 'A');
             } elseif ($letter == 'C') {
                 array_push($output_helix_array, 'G');
+            } elseif ($letter == 'G') {
+                array_push($output_helix_array, 'C');
             }
         }
         return implode(' ', $output_helix_array);
