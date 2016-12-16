@@ -83,5 +83,5 @@ function dna_form_submit($form, &$form_state) {
 function dna_success() {
     $input = $_SESSION['original'];
     $dna = $_SESSION['dna'];
-    return '<p>Your original half helix of: ' . $input . ' and <br>' . $dna . ' is the other half of helix.</p>';
+    return '<br><p><strong>Original Helix</strong>: ' . $input . '</p><hr><p><strong>Second Half Helix</strong>: ' . $dna . '.</p>';
 }
