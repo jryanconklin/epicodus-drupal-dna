@@ -20,6 +20,8 @@ For best results, please:
 - Install the DB in MySQL
 - Launch Project in MAMP
 
+`The Admin name and Password for the database (found in sites/db-backup) are both 'dna'.`
+
 ## Specifications ##
 
 * Create a View to display inside of a block on your front page
