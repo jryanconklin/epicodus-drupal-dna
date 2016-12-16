@@ -4,7 +4,7 @@
  * Tests for DNA Module.
  */
 
-class DNATestCase extends DrupalUnitTestCase {
+class DNAUnitTestCase extends DrupalUnitTestCase {
 
     public static function getInfo() {
         return array(
@@ -97,8 +97,47 @@ class DNATestCase extends DrupalUnitTestCase {
         //Assert
         $expected_output = 'TAGC';
         $this->assertEqual($result, $expected_output, $description);
+    }
+} // End DNATestCase
 
+class DNAFunctionalTestCase extends DrupalWebTestCase {
+
+    public static function getInfo() {
+        return array(
+            'name' => 'DNA Form Functional Tests',
+            'description' => 'Functional Tests for the DNA Module',
+            'group' => 'DNA Module',
+        );
+    }
+
+    public function setUp() {
+        parent::setUp(array('dna'));
+    }
+
+    public function testDNAValid() {
+
+        $this->drupalGet('dna');
+
+        $this->assertText('Half Helix', 'Form displayed!');
+
+        $form = array();
+        $form['half_helix'] = 'A';
+        $this->drupalPost('dna', $form, t('Submit'));
+
+        $this->assertText("Original Helix: A", 'Output displayed!');
 
     }
 
-} // End DNATestCase
+    public function testDNAInvalid() {
+
+        $this->drupalGet('dna');
+
+        $this->assertText('Half Helix', 'Form displayed!');
+
+        $form = array();
+        $form['half_helix'] = 'R';
+        $this->drupalPost('dna', $form, t('Submit'));
+
+        $this->assertText("Valid Helix Value Only: A T C or G", 'Invalid Output Displayed!');
+    }
+}

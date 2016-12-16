@@ -23,7 +23,7 @@ function dna_form() {
         '#type' => 'textfield',
         '#attributes' => array('placeholder' => t('Enter Your Half of the Helix to Get Another!')),
         '#required' => TRUE,
-        // '#element_validate' => array('element_validate_helix'),
+        '#element_validate' => array('element_validate_helix'),
     );
 
     $form['submit'] = array(
@@ -38,7 +38,7 @@ function element_validate_helix($element) {
 
     $helix_array = strtoupper($element['#value']);
     $helix_array = trim($helix_array);
-    $helix_array = explode(' ', $helix_array);
+    $helix_array = str_split($helix_array);
 
     foreach($helix_array as $letter) {
         if (!in_array($letter, $valid_helix)) {
@@ -83,5 +83,5 @@ function dna_form_submit($form, &$form_state) {
 function dna_success() {
     $input = $_SESSION['original'];
     $dna = $_SESSION['dna'];
-    return '<br><p><strong>Original Helix</strong>: ' . $input . '</p><hr><p><strong>Second Half Helix</strong>: ' . $dna . '.</p>';
+    return '<br><p><strong>Original Helix</strong>: ' . $input . '</p><hr><p><strong>Second Half Helix</strong>: ' . $dna . '</p>';
 }
